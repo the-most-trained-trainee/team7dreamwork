@@ -1,0 +1,39 @@
+<header class="header header_home">
+  <div class="container">
+    <nav class="nav">
+      <a href="/src/index.html" class="logo_link">
+        <svg class="logo_svg" width="24" height="24">
+
+          <use class="logo_icons" href="/src/images/icons.svg#film"></use>         
+
+        </svg>
+        <span class="logo_text">Filmoteka </span>
+      </a>     
+        <ul class="menu">
+          <li class="menu_item">
+            <a href="/src/index.html" class="current menu_link" data-name="home">HOME</a>
+          </li>
+          <li class="menu_item">
+
+            <a href="/src/library.html" class="menu_link  " data-name="library">MY LIBRARY</a>
+
+          </li>
+        </ul>
+      </nav>      
+      <form id="search-form" class="search">
+        <input
+          class="search_input"
+          autocomplete="off"
+          type="text"
+          placeholder="Movie search"
+          name="searchQuery"
+          data-key="search"
+        />
+        <svg class="search_icon" width="12" height="12">
+          <use href="/src/images/icons.svg#search"></use>
+        </svg>
+        
+      </form>
+    <p class="error visually-hidden"></p>    
+  </div>
+</header>
