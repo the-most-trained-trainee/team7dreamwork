@@ -16,7 +16,6 @@ export default function createMoviesMarkupLibrary(movies) {
         'https://image.tmdb.org/t/p/w500/AcKVlWaNVVVFQwro3nLXqPljcYA.jpg';
 
       const genresOfMovie = getGenresFromLocal(genresIdsArray);
-        console.log(genresOfMovie);
       let genres;
       if (genresOfMovie.length > 3) {
         genres = `${genresOfMovie.slice(0, 3).join(', ')}, ...other`;

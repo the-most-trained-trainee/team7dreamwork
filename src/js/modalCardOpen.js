@@ -102,8 +102,6 @@ function checkWatchBtnStyle(movie, movieOfId) {
     const finedFilmFromWatch = movieToWatched.find(item => item.id === movieOfId);
     const indexfinedFilm = movieToWatched.indexOf(finedFilmFromWatch);
 
-    // console.log("index checkWatchBtnStyle", movie);
-
     if (finedFilmFromWatch) {
       refs.watchBtn.classList.add('is-active__Btn');
       refs.watchBtn.textContent = 'Remove from watched';
@@ -161,8 +159,6 @@ export function saveToWatched(movie) {
 }
 
 export function removeFromWatched(movie) {
-  console.log("ebala")
-
   movieToWatched = movieToWatched.filter(watchedMovie => watchedMovie.id !== movie.id);
   saveOnLocalStorage(STORAGE_KEY_WATCHED, movieToWatched);
   refs.watchBtn.classList.remove('is-active__Btn');
