@@ -25,9 +25,12 @@ const refs = {
   queueBtn: document.querySelector('#queueModalBtn'),
 };
 
-export let watchButtonListener = null;
-export let queueButtonSaveListener = null;
-export let queueButtonDeleteListener = null;
+
+export const buttonListeners = {
+  watchButtonListener: null,
+  queueButtonSaveListener: null,
+  queueButtonDeleteListener : null
+}
 
 
 let movieToWatched = [];
@@ -109,13 +112,13 @@ function checkWatchBtnStyle(movie, movieOfId) {
       refs.watchBtn.textContent = 'Add to watched';
     }
 
-    if (watchButtonListener !== null) {
-      refs.watchBtn.removeEventListener('click', watchButtonListener);
-      watchButtonListener = null;
+    if (buttonListeners.watchButtonListener !== null) {
+      refs.watchBtn.removeEventListener('click', buttonListeners.watchButtonListener);
+      buttonListeners.watchButtonListener = null;
 
     }
-    watchButtonListener = () => toggleWatched(movie);
-    refs.watchBtn.addEventListener('click', watchButtonListener);
+    buttonListeners.watchButtonListener = () => toggleWatched(movie);
+    refs.watchBtn.addEventListener('click', buttonListeners.watchButtonListener);
   } catch (error) {
     console.log(error);
   }
@@ -130,14 +133,14 @@ function checkqueueBtnStyle(movie, movieOfId) {
     if (finedFilmFromQueue) {
       refs.queueBtn.classList.add('is-active__Btn');
       refs.queueBtn.textContent = 'Remove from queue';
-      queueButtonDeleteListener = () => removeFromQueue(movie, indexfinedFilm)
-      
-      refs.queueBtn.addEventListener('click', queueButtonDeleteListener);
+      buttonListeners.buttonListeners.queueButtonDeleteListener  = () => removeFromQueue(movie, indexfinedFilm)
+
+      refs.queueBtn.addEventListener('click', buttonListeners.queueButtonDeleteListener );
       return;
     } else {
       refs.queueBtn.classList.remove('is-active__Btn');
       refs.queueBtn.textContent = 'Add to queue';
-      queueButtonSaveListener = () => saveToQueue(movie, indexfinedFilm)
+      buttonListeners.queueButtonSaveListener = () => saveToQueue(movie, indexfinedFilm)
       refs.queueBtn.addEventListener('click', queueButtonSaveListener);
       return;
     }
@@ -174,18 +177,18 @@ export function saveToQueue(movie, index) {
   refs.queueBtn.removeEventListener('click', queueButtonSaveListener);
   refs.queueBtn.classList.add('is-active__Btn');
   refs.queueBtn.textContent = 'Remove from queue';
-  queueButtonDeleteListener = () => removeFromQueue(movie, index)
-  refs.queueBtn.addEventListener('click', queueButtonDeleteListener);
+  buttonListeners.buttonListeners.queueButtonDeleteListener  = () => removeFromQueue(movie, index)
+  refs.queueBtn.addEventListener('click', buttonListeners.queueButtonDeleteListener );
   return;
 }
 
 export function removeFromQueue(movie, index) {
   movieToQueue.splice(index, 1);
   saveOnLocalStorage(STORAGE_KEY_QUEUE, movieToQueue);
-  refs.queueBtn.removeEventListener('click', queueButtonDeleteListener);
+  refs.queueBtn.removeEventListener('click', buttonListeners.queueButtonDeleteListener );
   refs.queueBtn.classList.remove('is-active__Btn');
   refs.queueBtn.textContent = 'Add to queue';
-  queueButtonSaveListener = () => saveToQueue(movie, index)
+  buttonListeners.queueButtonSaveListener = () => saveToQueue(movie, index)
   refs.queueBtn.addEventListener('click', queueButtonSaveListener);
   return;
 }

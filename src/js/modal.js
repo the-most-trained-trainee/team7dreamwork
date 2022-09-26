@@ -1,6 +1,6 @@
 import { STORAGE_KEY_MOVIE } from './constants';
 import { openMovieCard } from './modalCardOpen';
-import {saveToQueue, removeFromQueue, watchButtonListener, queueButtonDeleteListener, queueButtonSaveListener } from './modalCardOpen';
+import {saveToQueue, removeFromQueue, buttonListeners } from './modalCardOpen';
 
 
 
@@ -44,11 +44,11 @@ function onCloseModal() {
   window.removeEventListener('keydown', onTargetKeydown);
   document.body.style.overflow = "";
   localStorage.removeItem(STORAGE_KEY_MOVIE);
-  if (watchButtonListener !== null) {
-    refs.watchBtn.removeEventListener('click', watchButtonListener);
-    watchButtonListener = null;
+  if (buttonListeners.watchButtonListener !== null) {
+    refs.watchBtn.removeEventListener('click', buttonListeners.watchButtonListener);
+    buttonListeners.watchButtonListener = null;
   }
-  refs.queueBtn.removeEventListener('click', queueButtonDeleteListener);
+  refs.queueBtn.removeEventListener('click', buttonListeners.queueButtonDeleteListener );
   refs.queueBtn.removeEventListener('click', queueButtonSaveListener);
 }
 
