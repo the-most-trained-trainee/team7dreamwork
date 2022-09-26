@@ -49,7 +49,7 @@ function onCloseModal() {
     buttonListeners.watchButtonListener = null;
   }
   refs.queueBtn.removeEventListener('click', buttonListeners.queueButtonDeleteListener );
-  refs.queueBtn.removeEventListener('click', queueButtonSaveListener);
+  refs.queueBtn.removeEventListener('click', buttonListeners.queueButtonSaveListener);
 }
 
 function onBackdropClick(e) {

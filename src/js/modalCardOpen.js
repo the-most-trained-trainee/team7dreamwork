@@ -133,7 +133,7 @@ function checkqueueBtnStyle(movie, movieOfId) {
     if (finedFilmFromQueue) {
       refs.queueBtn.classList.add('is-active__Btn');
       refs.queueBtn.textContent = 'Remove from queue';
-      buttonListeners.buttonListeners.queueButtonDeleteListener  = () => removeFromQueue(movie, indexfinedFilm)
+      buttonListeners.queueButtonDeleteListener  = () => removeFromQueue(movie, indexfinedFilm)
 
       refs.queueBtn.addEventListener('click', buttonListeners.queueButtonDeleteListener );
       return;
@@ -141,7 +141,7 @@ function checkqueueBtnStyle(movie, movieOfId) {
       refs.queueBtn.classList.remove('is-active__Btn');
       refs.queueBtn.textContent = 'Add to queue';
       buttonListeners.queueButtonSaveListener = () => saveToQueue(movie, indexfinedFilm)
-      refs.queueBtn.addEventListener('click', queueButtonSaveListener);
+      refs.queueBtn.addEventListener('click', buttonListeners.queueButtonSaveListener);
       return;
     }
   } catch (error) {
@@ -174,10 +174,10 @@ export function saveToQueue(movie, index) {
 
 
   saveOnLocalStorage(STORAGE_KEY_QUEUE, movieToQueue);
-  refs.queueBtn.removeEventListener('click', queueButtonSaveListener);
+  refs.queueBtn.removeEventListener('click', buttonListeners.queueButtonSaveListener);
   refs.queueBtn.classList.add('is-active__Btn');
   refs.queueBtn.textContent = 'Remove from queue';
-  buttonListeners.buttonListeners.queueButtonDeleteListener  = () => removeFromQueue(movie, index)
+  buttonListeners.queueButtonDeleteListener  = () => removeFromQueue(movie, index)
   refs.queueBtn.addEventListener('click', buttonListeners.queueButtonDeleteListener );
   return;
 }
@@ -189,6 +189,6 @@ export function removeFromQueue(movie, index) {
   refs.queueBtn.classList.remove('is-active__Btn');
   refs.queueBtn.textContent = 'Add to queue';
   buttonListeners.queueButtonSaveListener = () => saveToQueue(movie, index)
-  refs.queueBtn.addEventListener('click', queueButtonSaveListener);
+  refs.queueBtn.addEventListener('click', buttonListeners.queueButtonSaveListener);
   return;
 }
